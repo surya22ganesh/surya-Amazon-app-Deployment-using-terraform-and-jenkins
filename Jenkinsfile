@@ -15,8 +15,7 @@ pipeline {
         stage("Sonarqube analysis"){
             steps{
                 sh ''' 
-                    sudo mvn sonar:sonar -Dsonar.url=http://localhost:9000/ -Dsonar.login=squ_54d0d96f2cbe93f13e354de74934aef477c86514 
-                    -Dsonar.projectName=amazon-clone -Dsonar.java.binaries=. -Dsonar.projectKey=amazon-clone
+                    sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner
                 '''
             }
         }
