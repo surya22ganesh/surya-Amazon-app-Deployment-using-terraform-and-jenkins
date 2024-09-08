@@ -25,7 +25,10 @@ pipeline {
 
             steps{
                 // sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon '''
-                sh ''' $SCANNER_HOME/bin/sonar-scanner'''
+                sh '''
+                rm sonar-project.properties 
+                $SCANNER_HOME/bin/sonar-scanner
+                '''
             }
         }
     }
