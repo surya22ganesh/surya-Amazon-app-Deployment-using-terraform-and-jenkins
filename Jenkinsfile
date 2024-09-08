@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        SCANNER_HOME='/opt/sonarscanner/sonarscanner/bin/'
+        SCANNER_HOME='/opt/sonarscanner/sonarscanner'
     }
 
     stages {
@@ -16,11 +16,15 @@ pipeline {
             }
         }
         stage("Sonarqube analysis"){
+            // steps{
+            //     sh ''' 
+            //         echo $SCANNER_HOME
+            //         sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner    
+            //     '''
+            // }
+
             steps{
-                sh ''' 
-                    echo $SCANNER_HOME
-                    sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner    
-                '''
+                sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon '''
             }
         }
     }
