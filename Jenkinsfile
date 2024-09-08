@@ -25,7 +25,7 @@ pipeline {
 
             steps{
                 // sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon '''
-                sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon_pipeline -Dsonar.projectKey=Amazon_pipeline '''
+                sh ''' $SCANNER_HOME/bin/sonar-scanner'''
             }
         }
     }
