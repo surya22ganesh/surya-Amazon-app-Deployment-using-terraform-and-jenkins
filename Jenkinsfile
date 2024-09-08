@@ -19,9 +19,10 @@ pipeline {
             steps{
                 sh ''' 
                     echo $SCANNER_HOME    
-                    sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner
                 '''
             }
         }
     }
 }
+
+// sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner
