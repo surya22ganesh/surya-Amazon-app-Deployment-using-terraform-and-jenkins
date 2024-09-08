@@ -24,11 +24,14 @@ pipeline {
             // }
 
             steps{
-                // sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon '''
                 sh '''
-                rm sonar-project.properties 
-                sudo $SCANNER_HOME/bin/sonar-scanner
+                    rm sonar-project.properties 
+                    sudo $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon
                 '''
+                // sh '''
+                // rm sonar-project.properties 
+                // sudo $SCANNER_HOME/bin/sonar-scanner 
+                // '''
             }
         }
     }
