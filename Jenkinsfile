@@ -43,6 +43,9 @@ pipeline {
                 sh 'sudo docker build -t surya22ganesh/amazonclone .'
             }
         }
+        stage('trivy image scan'){
+            sh 'trivy image surya22ganesh/amazonclone > trivyimage.txt'
+        }
 
     }
 }
