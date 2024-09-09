@@ -44,11 +44,15 @@ pipeline {
             }
         }
         stage('trivy image scan'){
-            sh 'trivy image surya22ganesh/amazonclone > trivyimage.txt'
+            steps{
+                sh 'trivy image surya22ganesh/amazonclone > trivyimage.txt'
+            }
         }
         stage('docker container run'){
-            echo 'git rev-parse HEAD'
-            sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+            steps{
+                echo 'git rev-parse HEAD'
+                sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+            }            
         }
     }
 }
