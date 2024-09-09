@@ -5,14 +5,15 @@ pipeline {
     }
 
     stages {
-        // stage('clean workspace'){
-        //     steps{
-        //         cleanWs()
-        //     }
-        // }
+        stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
         stage('Hello') {
             steps {
                 echo 'Hello World'
+                sh 'ls'
             }
         }
         stage('rm sonar-project.properties file'){
@@ -22,23 +23,24 @@ pipeline {
         }
         stage("Sonarqube analysis"){
             steps{
-                sh ''' 
-                    echo $SCANNER_HOME
-                    sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=Amazon -Dsonar.sources=. -Dsonar.host.url=http://3.15.166.118:9000 -Dsonar.token=sqp_aea4af6a3e97ed18c79f1dc3b5c8bcbaaf9ee73b   
-                '''
+                sh "
+                    sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://3.142.187.101:9000 -Dsonar.token=sqp_6003ab206a25b34d26951e96866ada0a9ba6364a   
+                "
             }
-
-            // steps{
-            //     sh '''
-            //         rm sonar-project.properties 
-            //         sudo $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon
-            //     '''
-            //     // sh '''
-            //     // rm sonar-project.properties 
-            //     // sudo $SCANNER_HOME/bin/sonar-scanner 
-            //     // '''
-            // }
         }
+        //  stage("quality gate"){
+        //    steps {
+        //         script {
+        //             waitForQualityGate abortPipeline: false, credentialsId: 'jenkins' 
+        //         }
+        //     } 
+        // }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh "npm install"
+        //     }
+        // }
+
     }
 }
 
