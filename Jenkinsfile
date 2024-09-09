@@ -38,6 +38,11 @@ pipeline {
                 sh 'trivy fs . > trivyfs.txt'
             }
         }
+        stage('docker build'){
+            steps{
+                sh 'sudo docker build -t surya22ganesh/amazonclone .'
+            }
+        }
 
     }
 }
