@@ -28,26 +28,27 @@ pipeline {
         //         }
         //     } 
         // }
-        stage('Install Dependencies') {
-            steps {
-                sh "npm install"
-            }
-        }
-        stage('trivy fs scan'){
-            steps{
-                sh 'trivy fs . > trivyfs.txt'
-            }
-        }
-        stage('docker build'){
-            steps{
-                sh 'sudo docker build -t surya22ganesh/amazonclone .'
-            }
-        }
-        stage('trivy image scan'){
-            steps{
-                sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh "npm install"
+        //     }
+        // }
+        // stage('trivy fs scan'){
+        //     steps{
+        //         sh 'trivy fs . > trivyfs.txt'
+        //     }
+        // }
+        // stage('docker build'){
+        //     steps{
+        //         sh 'sudo docker build -t surya22ganesh/amazonclone .'
+        //     }
+        // }
+        // stage('trivy image scan'){
+        //     steps{
+        //         sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
+        //     }
+        // }
+
         // stage('docker container run'){
         //     steps{
         //         echo 'git rev-parse HEAD'
