@@ -44,11 +44,11 @@ pipeline {
                 sh 'sudo docker build -t surya22ganesh/amazonclone .'
             }
         }
-        stage('trivy image scan'){
-            steps{
-                sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
-            }
-        }
+        // stage('trivy image scan'){
+        //     steps{
+        //         sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
+        //     }
+        // }
         stage('docker container run') {
             steps {
                 script {
@@ -72,6 +72,7 @@ pipeline {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
                     // some block
                     sh '''
+                        sudo docker login -h https://hub.docker.com/
                         sudo docker push surya22ganesh/amazonclone
                     '''
                 }
