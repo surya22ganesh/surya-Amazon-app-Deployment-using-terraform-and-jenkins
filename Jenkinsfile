@@ -28,6 +28,7 @@ pipeline {
         //         }
         //     } 
         // }
+
         // stage('Install Dependencies') {
         //     steps {
         //         sh "npm install"
@@ -43,18 +44,11 @@ pipeline {
                 sh 'sudo docker build -t surya22ganesh/amazonclone .'
             }
         }
-        // stage('trivy image scan'){
-        //     steps{
-        //         sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
-        //     }
-        // }
-
-        // stage('docker container run'){
-        //     steps{
-        //         echo 'git rev-parse HEAD'
-        //         sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
-        //     }            
-        // }
+        stage('trivy image scan'){
+            steps{
+                sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
+            }
+        }
         stage('docker container run') {
             steps {
                 script {
@@ -73,6 +67,15 @@ pipeline {
             }
         
         }
+        stage('docker hub push'){
+            withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
+            // some block
+                sh '''
+                    docker login
+                    dcoker push surya22ganesh/amazonclone
+                '''
+            }
+        }
         stage('ended'){
             steps{
                 sh 'pipeline ended.'
@@ -83,3 +86,5 @@ pipeline {
 }
 
 // sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner
+
+// cloudbees dockerregistry plugin
