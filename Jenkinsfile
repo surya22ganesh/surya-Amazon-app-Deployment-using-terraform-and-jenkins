@@ -72,7 +72,7 @@ pipeline {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
                     // some block
                     sh '''
-                        sudo docker push surya22ganesh/amazonclone https://hub.docker.com/
+                        sudo docker push surya22ganesh/amazonclone
                     '''
                 }
             }
