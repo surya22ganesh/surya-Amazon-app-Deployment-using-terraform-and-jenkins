@@ -77,7 +77,7 @@ pipeline {
         }
         stage('ended'){
             steps{
-                sh 'pipeline ended.'
+                sh 'pipeline ended .'
             }
         }
         // stage('ending piepline'){
