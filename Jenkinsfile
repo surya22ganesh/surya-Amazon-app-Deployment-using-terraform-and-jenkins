@@ -79,6 +79,14 @@ pipeline {
             steps{
                 sh 'pipeline ended.'
             }
+        }
+        stage('ending piepline'){
+            steps{
+                sh '''
+                    ./build_script.sh
+                    echo $? 
+                '''
+            }
         }   
 
     }
