@@ -61,7 +61,7 @@ pipeline {
                         echo 'Starting Docker conatiner...'
                         sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
                     } catch (Exception e) {
-                        echo 'Build failed! Error: ' + e.toString()
+                        echo 'catched the error ! Error: ' + e.toString()
                         sh 'sudo docker rm amazonclonecontainer -f'
                         currentBuild.result = 'FAILURE'
                     } finally {
