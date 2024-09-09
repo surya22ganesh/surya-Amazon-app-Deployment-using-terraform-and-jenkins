@@ -80,14 +80,14 @@ pipeline {
                 sh 'pipeline ended.'
             }
         }
-        stage('ending piepline'){
-            steps{
-                sh '''
-                    ./build_script.sh
-                    echo $? 
-                '''
-            }
-        }   
+        // stage('ending piepline'){
+        //     steps{
+        //         sh '''
+        //             ./build_script.sh
+        //             echo $? 
+        //         '''
+        //     }
+        // }   
 
     }
 }
