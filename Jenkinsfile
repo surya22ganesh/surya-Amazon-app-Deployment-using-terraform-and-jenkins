@@ -23,9 +23,7 @@ pipeline {
         }
         stage("Sonarqube analysis"){
             steps{
-                sh '
-                    sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://3.142.187.101:9000 -Dsonar.token=sqp_6003ab206a25b34d26951e96866ada0a9ba6364a   
-                '
+                sh 'sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://3.142.187.101:9000 -Dsonar.token=sqp_6003ab206a25b34d26951e96866ada0a9ba6364a'
             }
         }
         //  stage("quality gate"){
