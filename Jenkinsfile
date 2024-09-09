@@ -48,12 +48,31 @@ pipeline {
                 sh 'trivy image surya22ganesh/amazonclone > trivyimage.txt'
             }
         }
-        stage('docker container run'){
-            steps{
-                echo 'git rev-parse HEAD'
-                sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
-            }            
-        }
+        // stage('docker container run'){
+        //     steps{
+        //         echo 'git rev-parse HEAD'
+        //         sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+        //     }            
+        // }
+        stage('docker container run') {
+            steps {
+                script {
+                    try {
+                        echo 'Starting Docker conatiner...'
+                        sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+                    } catch (Exception e) {
+                        echo 'Build failed! Error: ' + e.toString()
+                        sh 'sudo docker rm amazonclonecontainer -f'
+                        currentBuild.result = 'FAILURE'
+                    } finally {
+                        echo 'Cleaning up...'
+                        sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+                    }
+                }
+            }
+        
+        }   
+
     }
 }
 
