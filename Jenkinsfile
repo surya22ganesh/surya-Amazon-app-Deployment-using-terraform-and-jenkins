@@ -39,41 +39,40 @@ pipeline {
         //         sh 'trivy fs . > trivyfs.txt'
         //     }
         // }
-        stage('docker build'){
-            steps{
-                sh 'sudo docker build -t surya22ganesh/amazonclone .'
-            }
-        }
+        // stage('docker build'){
+        //     steps{
+        //         sh 'sudo docker build -t surya22ganesh/amazonclone .'
+        //     }
+        // }
         // stage('trivy image scan'){
         //     steps{
         //         sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
         //     }
         // }
-        stage('docker container run') {
-            steps {
-                script {
-                    try {
-                        echo 'Starting Docker conatiner...'
-                        sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
-                    } catch (Exception e) {
-                        echo 'catched the error ! Error: ' + e.toString()
-                        sh 'sudo docker rm amazonclonecontainer -f'
-                        currentBuild.result = 'FAILURE'
-                    } finally {
-                        echo 'Cleaning up...'
-                        sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
-                    }
-                }
-            }
+        // stage('docker container run') {
+        //     steps {
+        //         script {
+        //             try {
+        //                 echo 'Starting Docker conatiner...'
+        //                 sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+        //             } catch (Exception e) {
+        //                 echo 'catched the error ! Error: ' + e.toString()
+        //                 sh 'sudo docker rm amazonclonecontainer -f'
+        //                 currentBuild.result = 'FAILURE'
+        //             } finally {
+        //                 echo 'Cleaning up...'
+        //                 sh 'sudo docker run -dit --name amazonclonecontainer -p 3000:3000 surya22ganesh/amazonclone'
+        //             }
+        //         }
+        //     }
         
-        }
+        // }
         stage('docker hub push'){
             steps{
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
                     // some block
                     sh '''
-                        sudo docker login -h https://hub.docker.com/
-                        sudo docker push surya22ganesh/amazonclone
+                        sudo docker push surya22ganesh/amazonclone 
                     '''
                 }
             }
