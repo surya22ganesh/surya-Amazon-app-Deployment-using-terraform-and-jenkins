@@ -16,7 +16,9 @@ pipeline {
             }
         }
         stage('rm sonar-project.properties file'){
-            sh 'rm sonar-project.properties'
+            steps{
+                sh 'rm sonar-project.properties'
+            }
         }
         // stage("Sonarqube analysis"){
         //     steps{
