@@ -18,16 +18,16 @@ pipeline {
         }
         stage("Sonarqube analysis"){
             steps{
-                sh 'sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://3.142.187.101:9000 -Dsonar.token=sqp_6003ab206a25b34d26951e96866ada0a9ba6364a'
+                sh 'sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://3.145.217.31:9000 -Dsonar.token=sqp_b5e3a7ad93a37b439b18a89beaadc3fda58a7307'
             }
         }
-        //  stage("quality gate"){
-        //    steps {
-        //         script {
-        //             waitForQualityGate abortPipeline: false, credentialsId: 'jenkins' 
-        //         }
-        //     } 
-        // }
+         stage("quality gate"){
+           steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'jenkins' 
+                }
+            } 
+        }
         // stage('Install Dependencies') {
         //     steps {
         //         sh "npm install"
