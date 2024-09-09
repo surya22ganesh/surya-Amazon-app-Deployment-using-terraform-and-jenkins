@@ -68,12 +68,14 @@ pipeline {
         
         }
         stage('docker hub push'){
-            withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
-            // some block
-                sh '''
-                    docker login
-                    dcoker push surya22ganesh/amazonclone
-                '''
+            steps{
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') {
+                    // some block
+                        sh '''
+                            docker login
+                            dcoker push surya22ganesh/amazonclone
+                        '''
+                }
             }
         }
         stage('ended'){
