@@ -45,7 +45,7 @@ pipeline {
         }
         stage('trivy image scan'){
             steps{
-                sh 'trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
+                sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
             }
         }
         // stage('docker container run'){
