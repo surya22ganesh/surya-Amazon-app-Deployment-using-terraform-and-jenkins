@@ -38,11 +38,11 @@ pipeline {
         //         sh 'trivy fs . > trivyfs.txt'
         //     }
         // }
-        // stage('docker build'){
-        //     steps{
-        //         sh 'sudo docker build -t surya22ganesh/amazonclone .'
-        //     }
-        // }
+        stage('docker build'){
+            steps{
+                sh 'sudo docker build -t surya22ganesh/amazonclone .'
+            }
+        }
         // stage('trivy image scan'){
         //     steps{
         //         sh 'sudo trivy image surya22ganesh/amazonclone:latest > trivyimage.txt'
@@ -72,6 +72,11 @@ pipeline {
                 }
             }
         
+        }
+        stage('ended'){
+            steps{
+                sh 'pipeline ended.'
+            }
         }   
 
     }
