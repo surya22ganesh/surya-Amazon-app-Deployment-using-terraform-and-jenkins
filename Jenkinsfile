@@ -5,9 +5,14 @@ pipeline {
     }
 
     stages {
+         stage('clean workspace'){
+            steps{
+                cleanWs()
+            }
+        }
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                echo 'pipeline started'
                 sh 'ls'
             }
         }
