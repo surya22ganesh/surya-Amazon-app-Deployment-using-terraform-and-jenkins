@@ -15,25 +15,25 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage("Sonarqube analysis"){
-            // steps{
-            //     sh ''' 
-            //         echo $SCANNER_HOME
-            //         sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner    
-            //     '''
-            // }
+        // stage("Sonarqube analysis"){
+        //     steps{
+        //         sh ''' 
+        //             echo $SCANNER_HOME
+        //             sudo sh /opt/sonarscanner/sonarscanner/bin/sonar-scanner    
+        //         '''
+        //     }
 
-            steps{
-                sh '''
-                    rm sonar-project.properties 
-                    sudo $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon
-                '''
-                // sh '''
-                // rm sonar-project.properties 
-                // sudo $SCANNER_HOME/bin/sonar-scanner 
-                // '''
-            }
-        }
+        //     // steps{
+        //     //     sh '''
+        //     //         rm sonar-project.properties 
+        //     //         sudo $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Amazon -Dsonar.projectKey=Amazon
+        //     //     '''
+        //     //     // sh '''
+        //     //     // rm sonar-project.properties 
+        //     //     // sudo $SCANNER_HOME/bin/sonar-scanner 
+        //     //     // '''
+        //     // }
+        // }
     }
 }
 
