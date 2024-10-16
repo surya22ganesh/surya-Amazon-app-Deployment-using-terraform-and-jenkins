@@ -70,7 +70,7 @@ pipeline {
         stage('docker hub push'){
             steps{
                 sh '''
-                    sudo docker login -u surya22ganesh -p Surya@1999
+                    sudo docker login -u username -p password
                     sudo docker push surya22ganesh/amazonclone
                 '''
             }
